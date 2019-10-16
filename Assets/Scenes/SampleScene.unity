@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0961c5f38f5cdb44180e7df0beacda41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disabled: 0
   runSpeed: 2
   jumpVelocity: 10
   controlledObject: {fileID: 509553047}
@@ -525,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0961c5f38f5cdb44180e7df0beacda41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disabled: 1
   runSpeed: 2
   jumpVelocity: 10
   controlledObject: {fileID: 1768244771}
