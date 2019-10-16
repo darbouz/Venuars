@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ObjectController.cs" />
     <Compile Include="Assets\PhysicsObject.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Document/Unity/PrototypeGame/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
