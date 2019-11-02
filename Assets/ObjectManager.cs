@@ -9,6 +9,7 @@ public class ObjectManager : MonoBehaviour
 
     public ObjectMovement objectMovement;
     public ObjectCollisionSystem collision;
+    public PlayerAnimation playerAnimation;
     public enum Direction {Down=-1,Up=1 }
     public Direction gravityDirection;
     
@@ -38,20 +39,29 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    public void move(float time)
+    public void move(float axisRaw, float time)
     {
-        objectMovement.move(time);
+        objectMovement.move(time * axisRaw);
+        playerAnimation.runOrStop(axisRaw);
+        
         if (objectToPull != null)
             objectToPull.position += Vector2.right * objectMovement.runSpeed * objectMovement.speedModifer * time;
     }
 
     public void jump()
     {
+        
         if (grounded)
         {
             objectMovement.jump();
+            playerAnimation.jumpOrStop(true);
             grounded = false;
         }
+    }
+
+    public void land()
+    {
+        playerAnimation.jumpOrStop(false);
     }
 
     public void pull()
