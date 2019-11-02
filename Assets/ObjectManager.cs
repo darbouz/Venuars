@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -13,6 +14,29 @@ public class ObjectManager : MonoBehaviour
     
 
     private Rigidbody2D objectToPull;
+    private bool grounded;
+
+    [Header("Events")]
+    [Space]
+
+    public UnityEvent OnLandEvent;
+    [System.Serializable]
+    public class BoolEvent : UnityEvent<bool> { }
+    private void Awake()
+    {
+        if (OnLandEvent == null)
+            OnLandEvent = new UnityEvent();
+    }
+   
+    private void FixedUpdate()
+    {
+        if (collision.isGrounded((float)gravityDirection))
+        {
+            if(!grounded)
+                OnLandEvent.Invoke();
+            grounded = true;
+        }
+    }
 
     public void move(float time)
     {
@@ -23,8 +47,11 @@ public class ObjectManager : MonoBehaviour
 
     public void jump()
     {
-        if (collision.isGrounded((float)gravityDirection))
+        if (grounded)
+        {
             objectMovement.jump();
+            grounded = false;
+        }
     }
 
     public void pull()

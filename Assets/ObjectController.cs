@@ -44,6 +44,11 @@ public class ObjectController : MonoBehaviour
         }
     }
 
+    public void OnLand()
+    {
+        Debug.Log("Landed");
+    }
+
     void FixedUpdate()
     {
         objectManager.move(axisRaw * Time.fixedDeltaTime);
