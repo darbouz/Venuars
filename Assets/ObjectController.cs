@@ -26,6 +26,7 @@ public class ObjectController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
+            objectManager.inversSpace();
             disabled = !disabled;
             axisRaw = 0;
         }

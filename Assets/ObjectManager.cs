@@ -10,12 +10,16 @@ public class ObjectManager : MonoBehaviour
     public ObjectMovement objectMovement;
     public ObjectCollisionSystem collision;
     public PlayerAnimation playerAnimation;
+    //********** Enum
     public enum Direction {Down=-1,Up=1 }
+    //*************
+
     public Direction gravityDirection;
-    
 
     private Rigidbody2D objectToPull;
     private bool grounded;
+    private int facing = 1;
+    private int spaceDirection = 1;
 
     [Header("Events")]
     [Space]
@@ -39,9 +43,16 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    public void inversSpace()
+    {
+        spaceDirection *= -1;
+    }
+
     public void move(float axisRaw, float time)
     {
-        objectMovement.move(time * axisRaw);
+        if (axisRaw * facing * spaceDirection < 0)
+            flip();
+        objectMovement.move(time * axisRaw * spaceDirection);
         playerAnimation.runOrStop(axisRaw);
         
         if (objectToPull != null)
@@ -59,6 +70,7 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    //this called from Event
     public void land()
     {
         playerAnimation.jumpOrStop(false);
@@ -74,5 +86,12 @@ public class ObjectManager : MonoBehaviour
     {
         objectToPull = null;
         objectMovement.speedModifer = 1;
+    }
+
+
+    private void flip()
+    {
+        facing *= -1;
+        transform.localScale *= (Vector2.left + Vector2.up);
     }
 }

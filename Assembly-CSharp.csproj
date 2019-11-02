@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\ObjectCollisionSystem.cs" />
     <Compile Include="Assets\ObjectController.cs" />
     <Compile Include="Assets\ObjectManager.cs" />

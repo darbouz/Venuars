@@ -29,7 +29,7 @@ public class ObjectCollisionSystem : MonoBehaviour
     {
        
         Vector2 size = objectBoxCollider.bounds.extents - (Vector3.right * 0.1f);
-        Debug.DrawRay(objectBoxCollider.bounds.center, Vector2.up * (size.y + shellRadius), Color.red);
+        Debug.DrawRay(objectBoxCollider.bounds.center, Vector2.down * (size.y + shellRadius), Color.red);
         Debug.DrawRay(objectBoxCollider.bounds.center, Vector2.right * (size.x), Color.red);
         return Physics2D.BoxCast(objectBoxCollider.bounds.center, size, 0f, direction, shellRadius, layer);
     }
